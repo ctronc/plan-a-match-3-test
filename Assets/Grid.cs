@@ -46,8 +46,17 @@ public class Grid : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(posX, posY);
 
         block.Initialize(colorType, x, y, sprite);
+        block.SetGrid(this);
 
         blocks[x, y] = block;
         return block;
+    }
+
+    public void OnBlockClicked(Block block)
+    {
+        Vector2Int pos = block.GetPosition();
+
+        Destroy(block.gameObject);
+        blocks[pos.x, pos.y] = null;
     }
 }

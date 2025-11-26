@@ -1021,7 +1021,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5acd96da61cff774193ed0d2f76cd038, type: 3}
   - {fileID: 21300000, guid: 217b4b4b0581c9b438fa32dfb9cd8e38, type: 3}
   gridParent: {fileID: 1836129718}
-  gridOrigin: {x: -260, y: -270}
+  gridOrigin: {x: -260, y: -275}
   horizontalSpacing: 130
   verticalSpacing: 110
 --- !u!1 &842542934
