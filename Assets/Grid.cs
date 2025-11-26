@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    private const int WIDTH = 6;
-    private const int HEIGHT = 5;
+    private const int WIDTH = 5;
+    private const int HEIGHT = 6;
     private const int BLOCK_TYPES = 5;
 
     [SerializeField] private Block blockPrefab;
     [SerializeField] private Sprite[] blockSprites;
     [SerializeField] private Transform gridParent;
+    [SerializeField] private Vector2 gridOrigin = Vector2.zero;
+    [SerializeField] private float horizontalSpacing = 1f;
+    [SerializeField] private float verticalSpacing = 1f;
 
     private Block[,] blocks;
 
@@ -36,7 +39,12 @@ public class Grid : MonoBehaviour
 
         Block block = Instantiate(blockPrefab, gridParent);
         block.gameObject.SetActive(true);
-        block.transform.position = new Vector3(x, y, 0);
+
+        RectTransform rectTransform = block.GetComponent<RectTransform>();
+        float posX = gridOrigin.x + (x * horizontalSpacing);
+        float posY = gridOrigin.y + (y * verticalSpacing);
+        rectTransform.anchoredPosition = new Vector2(posX, posY);
+
         block.Initialize(colorType, x, y, sprite);
 
         blocks[x, y] = block;

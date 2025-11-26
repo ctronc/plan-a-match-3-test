@@ -1,20 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Block : MonoBehaviour
 {
     private int colorType;
-    private SpriteRenderer spriteRenderer;
+    private Image image;
     private int x;
     private int y;
 
     public void Initialize(int colorType, int x, int y, Sprite sprite)
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
 
         this.colorType = colorType;
         this.x = x;
         this.y = y;
-        spriteRenderer.sprite = sprite;
+        image.sprite = sprite;
     }
 
     public int GetColorType()
