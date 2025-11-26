@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     private const int INITIAL_MOVES = 5;
-    private const int POINTS_PER_MOVE = 10;
+
+    [SerializeField] private Grid grid;
 
     private int score;
     private int moves;
@@ -15,25 +17,42 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        if (grid != null)
+        {
+            grid.OnBlocksCollected += OnBlocksCollected;
+        }
+
         ResetGame();
     }
 
-    // Called by Make Move button
-    public void MakeMove()
+    void OnDestroy()
+    {
+        if (grid != null)
+        {
+            grid.OnBlocksCollected -= OnBlocksCollected;
+        }
+    }
+
+    private void OnBlocksCollected(int blockCount)
     {
         if (moves <= 0) return;
 
         moves--;
         OnMovesChanged?.Invoke(moves);
 
-        score += POINTS_PER_MOVE;
+        score += blockCount;
         OnScoreChanged?.Invoke(score);
 
-        // Check if game is over
         if (moves == 0)
         {
-            OnGameOver?.Invoke(score);
+            StartCoroutine(ShowGameOverWithDelay());
         }
+    }
+
+    private IEnumerator ShowGameOverWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        OnGameOver?.Invoke(score);
     }
 
     public void RestartGame()

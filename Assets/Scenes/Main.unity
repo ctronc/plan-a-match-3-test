@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1162f554edb11c42902f69d7638c3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 691363305}
 --- !u!1 &236685119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1025,7 @@ MonoBehaviour:
   gridOrigin: {x: -260, y: -275}
   horizontalSpacing: 130
   verticalSpacing: 110
+  blockSize: 129
 --- !u!1 &842542934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &954975520
 RectTransform:
   m_ObjectHideFlags: 0
